@@ -40,7 +40,7 @@ namespace Gameplay
         private void StopSpawn()
         {
             isSpawning = false;
-            StopCoroutine(ScheduleSpawn());
+            StopAllCoroutines();
         }
 
         private void ResetLastSpawner()
@@ -53,7 +53,7 @@ namespace Gameplay
             while (isSpawning)
             {
                 Spawn();
-                yield return new WaitForSecondsRealtime(waitBeforeSpawn);
+                yield return CoroutineHelper.WaitFor(waitBeforeSpawn);
             }
         }
 
